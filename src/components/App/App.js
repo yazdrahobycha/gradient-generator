@@ -14,12 +14,13 @@ initialColorsState.forEach((entry) => {
 
 function App() {
   const [colors, setColors] = useState(initialColorsState);
+  const [mode, setMode] = useState("lab");
   const [angle, setAngle] = useState(60);
-  const [mode, setMode] = useState('lab')
+  const [bezierParam, setBezierParams] = useState([0.5, 0.5, 0.6, 1]);
 
   return (
     <div>
-      <GradientPreview colors={colors} angle={angle} mode={mode} />
+      <GradientPreview bezierParam={bezierParam} colors={colors} angle={angle} mode={mode} />
       <Options
         setColors={setColors}
         colors={colors}
@@ -27,6 +28,8 @@ function App() {
         setAngle={setAngle}
         mode={mode}
         setMode={setMode}
+        bezierParam={bezierParam}
+        setBezierParams={setBezierParams}
       />
     </div>
   );

@@ -1,0 +1,10 @@
+.wrapper {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.radio_wrapper {
+    background-color: brown;
+    color: white;
+}
