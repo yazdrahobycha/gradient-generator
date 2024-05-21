@@ -25,6 +25,8 @@ function App() {
         colors={colors}
         angle={angle}
         setAngle={setAngle}
+        mode={mode}
+        setMode={setMode}
       />
     </div>
   );
