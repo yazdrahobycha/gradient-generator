@@ -11,7 +11,7 @@ function ColorPicker({ passedColor, indexInColorsArray, passedIsActive }) {
   return (
     <div className={style.picker_wrapper}>
       <input
-        disabled={passedIsActive}
+        disabled={!passedIsActive}
         type="color"
         id="head"
         name="head"

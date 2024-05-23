@@ -4,9 +4,11 @@ import { createGradientBackground } from "../../helpers";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { ColorsContext } from "../ColorsProvider/ColorsProvider";
+import { ModeContext } from "../ModeProvider/ModeProvider";
 
-function GradientPreview({ angle, mode, bezierParam, precision }) {
-  const {getActiveColors} = useContext(ColorsContext);
+function GradientPreview({ angle, bezierParam, precision }) {
+  const { getActiveColors } = useContext(ColorsContext);
+  const { mode } = useContext(ModeContext);
 
   const colorsEntries = getActiveColors();
   const gradientStyles = createGradientBackground(
@@ -16,7 +18,7 @@ function GradientPreview({ angle, mode, bezierParam, precision }) {
     bezierParam,
     precision
   );
-  
+
   const codeString = `.element {\n    background-image: ${gradientStyles.backgroundImage}\n}`;
   return (
     <>

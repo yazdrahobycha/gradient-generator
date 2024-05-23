@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./modes-container.module.css";
+import { ModeContext } from "../ModeProvider/ModeProvider";
 const SUPPORTED_COLOR_MODES = ["lrgb", "hsl", "hsv", "hcl", "lab"];
 
-function ModesContainer({ mode, setMode }) {
+function ModesContainer() {
+  const { mode, handleModeChange } = useContext(ModeContext);
+
   return (
     <div className={styles.wrapper}>
       {SUPPORTED_COLOR_MODES.map((modeName, i) => {
@@ -14,7 +17,7 @@ function ModesContainer({ mode, setMode }) {
               id={modeName}
               value={modeName}
               checked={mode === modeName}
-              onChange={(e) => setMode(e.target.value)}
+              onChange={handleModeChange}
             />
             <label htmlFor={modeName}>{modeName.toUpperCase()}</label>
           </div>

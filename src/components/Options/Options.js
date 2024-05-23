@@ -9,8 +9,6 @@ import BezierContainer from "../BezierContainer/BezierContainer";
 function Options({
   angle,
   setAngle,
-  mode,
-  setMode,
   setBezierParams,
   bezierParam,
   precision,
@@ -18,8 +16,8 @@ function Options({
 }) {
   return (
     <div className={styles.options}>
-      <ColorPickersContainer/>
-      <ModesContainer mode={mode} setMode={setMode} />
+      <ColorPickersContainer />
+      <ModesContainer />
       <AngleContainer angle={angle} setAngle={setAngle} />
       <PrecisionContainer precision={precision} setPrecision={setPrecision} />
       <BezierContainer
