@@ -6,7 +6,7 @@ function AngleContainer({ angle, setAngle }) {
       <input
         style={{ width: "400px" }}
         type="range"
-        id="angle"
+        id="angleSlider"
         name="angle"
         min="0"
         max="355"

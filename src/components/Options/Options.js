@@ -3,32 +3,29 @@ import styles from "./options.module.css";
 import ColorPickersContainer from "../ColorPickersContainer/ColorPickersContainer";
 import ModesContainer from "../ModesContainer/ModesContainer";
 import AngleContainer from "../AngleContainer/AngleContainer";
-import "react-bezier-curve-editor/lib/index.css";
-import { BezierCurveEditor } from "react-bezier-curve-editor";
+import PrecisionContainer from "../PrecisionContainer/PrecisionContainer";
+import BezierContainer from "../BezierContainer/BezierContainer";
 
 function Options({
-  colors,
   angle,
-  setColors,
   setAngle,
   mode,
   setMode,
   setBezierParams,
   bezierParam,
+  precision,
+  setPrecision,
 }) {
   return (
     <div className={styles.options}>
-      <ColorPickersContainer colors={colors} setColors={setColors} />
+      <ColorPickersContainer/>
       <ModesContainer mode={mode} setMode={setMode} />
       <AngleContainer angle={angle} setAngle={setAngle} />
-      <div style={{ width: "500px" }}>
-        <BezierCurveEditor
-          value={bezierParam}
-          onChange={(bezier) => {
-            setBezierParams(bezier);
-          }}
-        />
-      </div>
+      <PrecisionContainer precision={precision} setPrecision={setPrecision} />
+      <BezierContainer
+        setBezierParams={setBezierParams}
+        bezierParam={bezierParam}
+      />
     </div>
   );
 }

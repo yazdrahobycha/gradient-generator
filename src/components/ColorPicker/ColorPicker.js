@@ -1,6 +1,15 @@
-import React, { memo, useState } from "react";
+import React, { memo, useContext } from "react";
+import { ColorsContext } from "../ColorsProvider/ColorsProvider";
 
-function ColorPicker({ color, hadleColorChange, i, ...rest }) {
+function ColorPicker({
+  passedColor,
+  indexInColorsArray,
+  passedIsActive,
+  ...rest
+}) {
+  //console.log(useContext(ColorsContext));
+  const { handleColorChange } = useContext(ColorsContext);
+  console.log(indexInColorsArray + " color picker rerendering");
   return (
     <div>
       <input
@@ -8,8 +17,8 @@ function ColorPicker({ color, hadleColorChange, i, ...rest }) {
         type="color"
         id="head"
         name="head"
-        value={color}
-        onChange={(e) => hadleColorChange(e, i)}
+        value={passedColor}
+        onChange={(e) => handleColorChange(e, indexInColorsArray)}
       />
     </div>
   );

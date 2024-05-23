@@ -6,25 +6,26 @@ export function createGradientBackground(
   angle,
   mode,
   bezierParam,
-  presicion = 12
+  precision
 ) {
+  const precisionWithbaseColors = Number(precision) + colors.length;
   const easing = BezierEasing(...bezierParam);
-  const withInBetweenColors = chroma.scale(colors).mode(mode).colors(presicion);
-
+  const withInBetweenColors = chroma
+    .scale(colors)
+    .mode(mode)
+    .colors(precisionWithbaseColors);
   const hslValuesForStyles = withInBetweenColors
     .map((hexColor, i) => {
       const hslColor = chroma(hexColor).hsl();
-      const position = easing(i / (presicion - 1)) * 100;
+      const position = easing(i / (precisionWithbaseColors - 1)) * 100;
       return `      hsl(${Math.round(hslColor[0])}deg ${Math.round(
         hslColor[1] * 100
       )}% ${Math.round(hslColor[2] * 100)}%) ${Math.round(position)}%`;
     })
     .join(",\n ");
 
-  //const withInBetweenColors = chroma.scale(colors).mode(mode).colors(6);
   const inlineStyleObj = {
     backgroundImage: `linear-gradient(${angle}deg,\n ${hslValuesForStyles})`,
   };
-  console.log(inlineStyleObj);
   return inlineStyleObj;
 }
