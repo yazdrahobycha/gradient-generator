@@ -6,22 +6,14 @@ import AngleContainer from "../AngleContainer/AngleContainer";
 import PrecisionContainer from "../PrecisionContainer/PrecisionContainer";
 import BezierContainer from "../BezierContainer/BezierContainer";
 
-function Options({
-  setBezierParams,
-  bezierParam,
-  precision,
-  setPrecision,
-}) {
+function Options() {
   return (
     <div className={styles.options}>
+      <BezierContainer />
       <ColorPickersContainer />
       <ModesContainer />
       <AngleContainer />
-      <PrecisionContainer precision={precision} setPrecision={setPrecision} />
-      <BezierContainer
-        setBezierParams={setBezierParams}
-        bezierParam={bezierParam}
-      />
+      <PrecisionContainer />
     </div>
   );
 }

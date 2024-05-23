@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PrecisionContext } from "../PrecisionProvider/PrecisionProvider";
 
-function PrecisionContainer({ precision, setPrecision }) {
+function PrecisionContainer() {
+  const { precision, handlePrecisionChange } = useContext(PrecisionContext);
   return (
     <div>
       <input
@@ -12,7 +14,7 @@ function PrecisionContainer({ precision, setPrecision }) {
         max="20"
         step="1"
         value={precision}
-        onChange={(e) => setPrecision(e.target.value)}
+        onChange={handlePrecisionChange}
       />
       <label htmlFor="precisionSlider">{precision}</label>
     </div>
