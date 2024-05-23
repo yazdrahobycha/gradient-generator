@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AngleContext } from "../AngleProvider/AngleProvider";
 
-function AngleContainer({ angle, setAngle }) {
+function AngleContainer() {
+  const { angle, handleAngleChange } = useContext(AngleContext);
+
   return (
     <div>
       <input
@@ -12,7 +15,7 @@ function AngleContainer({ angle, setAngle }) {
         max="355"
         step="5"
         value={angle}
-        onChange={(e) => setAngle(e.target.value)}
+        onChange={handleAngleChange}
       />
       <label htmlFor="angleSlider">Angle: {angle}deg</label>
     </div>

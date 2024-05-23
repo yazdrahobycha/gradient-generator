@@ -5,10 +5,12 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { ColorsContext } from "../ColorsProvider/ColorsProvider";
 import { ModeContext } from "../ModeProvider/ModeProvider";
+import { AngleContext } from "../AngleProvider/AngleProvider";
 
-function GradientPreview({ angle, bezierParam, precision }) {
+function GradientPreview({ bezierParam, precision }) {
   const { getActiveColors } = useContext(ColorsContext);
   const { mode } = useContext(ModeContext);
+  const { angle } = useContext(AngleContext);
 
   const colorsEntries = getActiveColors();
   const gradientStyles = createGradientBackground(
