@@ -16,16 +16,12 @@ function ColorPickersContainer() {
     in state array  */
         }
         return (
-          <div className={styles.picker_wrapper} key={colorEntry.id}>
+          <div key={colorEntry.id}>
             <ColorPicker
-              //passedIsActive={colorEntry.active}
-              disabled={!colorEntry.active}
+              passedIsActive={colorEntry.active}
               indexInColorsArray={i}
               passedColor={colorEntry.color}
             />
-            <button onClick={() => handleActiveColor(i)}>
-              {colorEntry.active ? <Trash /> : <Plus />}
-            </button>
           </div>
         );
       })}

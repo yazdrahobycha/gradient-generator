@@ -1,25 +1,26 @@
 import React, { memo, useContext } from "react";
 import { ColorsContext } from "../ColorsProvider/ColorsProvider";
+import style from "../ColorPickersContainer/color-picker-container.module.css";
+import { Plus, Trash } from "react-feather";
 
-function ColorPicker({
-  passedColor,
-  indexInColorsArray,
-  passedIsActive,
-  ...rest
-}) {
-  //console.log(useContext(ColorsContext));
-  const { handleColorChange } = useContext(ColorsContext);
-  console.log(indexInColorsArray + " color picker rerendering");
+function ColorPicker({ passedColor, indexInColorsArray, passedIsActive }) {
+  const { handleColorChange, handleActiveColor } = useContext(ColorsContext);
+
+  const Icon = passedIsActive ? Trash : Plus;
+
   return (
-    <div>
+    <div className={style.picker_wrapper}>
       <input
-        {...rest}
+        disabled={passedIsActive}
         type="color"
         id="head"
         name="head"
         value={passedColor}
         onChange={(e) => handleColorChange(e, indexInColorsArray)}
       />
+      <button onClick={() => handleActiveColor(indexInColorsArray)}>
+        <Icon />
+      </button>
     </div>
   );
 }
