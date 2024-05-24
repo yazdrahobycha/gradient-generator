@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { PrecisionContext } from "../PrecisionProvider/PrecisionProvider";
+import { DEFAULT_PRECISION_RANGE } from "../../constants";
 
 function PrecisionContainer() {
   const { precision, handlePrecisionChange } = useContext(PrecisionContext);
@@ -10,8 +11,8 @@ function PrecisionContainer() {
         type="range"
         id="precisionSlider"
         name="precision"
-        min="1"
-        max="20"
+        min={DEFAULT_PRECISION_RANGE[0]}
+        max={DEFAULT_PRECISION_RANGE[1]}
         step="1"
         value={precision}
         onChange={handlePrecisionChange}

@@ -13,7 +13,7 @@ function BezierContainer() {
       <BezierCurveEditor
         value={bezier}
         onChange={(bezierInputValue) => {
-          setActivePreset('idle')
+          setActivePreset("idle");
           handleBezierChange(bezierInputValue);
         }}
       />
@@ -30,15 +30,6 @@ function BezierContainer() {
             >
               {name}
             </Button>
-
-            // <button
-            //   key={name}
-            //   onClick={() => {
-            //     handleBezierChange(parameters);
-            //   }}
-            // >
-            //   {name}
-            // </button>
           );
         })}
       </div>

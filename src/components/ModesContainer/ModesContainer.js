@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "./modes-container.module.css";
 import { ModeContext } from "../ModeProvider/ModeProvider";
-const SUPPORTED_COLOR_MODES = ["lrgb", "hsl", "hsv", "hcl", "lab"];
+import { SUPPORTED_COLOR_MODES } from "../../constants";
 
 function ModesContainer() {
   const { mode, handleModeChange } = useContext(ModeContext);

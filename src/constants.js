@@ -19,3 +19,13 @@ export const INITIAL_COLORS_STATES = (function () {
   });
   return states;
 })();
+
+export const SUPPORTED_COLOR_MODES = ["lrgb", "hsl", "hsv", "hcl", "lab"];
+
+export const DEFAULT_COLOR_MODE = SUPPORTED_COLOR_MODES[4];
+
+export const DEFAULT_ANGLE = 60;
+
+export const DEFAULT_PRECISION_RANGE = [1, 20];
+
+export const DEFAULT_PRECISION = 1;

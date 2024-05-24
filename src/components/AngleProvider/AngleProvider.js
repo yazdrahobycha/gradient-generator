@@ -1,8 +1,10 @@
 import React, { createContext, useState, useMemo } from "react";
+import { DEFAULT_ANGLE } from "../../constants";
 
 export const AngleContext = createContext();
+
 function AngleProvider({ children }) {
-  const [angle, setAngle] = useState(60);
+  const [angle, setAngle] = useState(DEFAULT_ANGLE);
 
   function handleAngleChange(e) {
     setAngle(e.target.value);
