@@ -1,20 +1,9 @@
-import React, { createContext, useCallback, useMemo, useState } from "react";
-
+import React, { createContext, useMemo, useState } from "react";
+import { INITIAL_COLORS_STATES } from "../../constants";
 export const ColorsContext = createContext();
 
-const initialColorsState = [
-  { color: "#FF3DCE", active: true },
-  { color: "#F94B06", active: true },
-  { color: "#FFE666", active: false },
-  { color: "#E20BBA", active: false },
-  { color: "#4EDF00", active: false },
-];
-initialColorsState.forEach((entry) => {
-  entry.id = crypto.randomUUID();
-});
-
 function ColorsProvider({ children }) {
-  const [colors, setColors] = useState(initialColorsState);
+  const [colors, setColors] = useState(INITIAL_COLORS_STATES);
 
   function handleColorChange(e, i) {
     // we have to pull the newest state value manualy

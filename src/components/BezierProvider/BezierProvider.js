@@ -1,8 +1,9 @@
 import React, { useState, useMemo, createContext } from "react";
+import { DEFAULT_BEZIER_PRESET } from "../../constants";
 export const BezierContext = createContext();
 
 function BezierProvider({ children }) {
-  const [bezier, setBezier] = useState([0.3, 0.3, 0.7, 0.7]);
+  const [bezier, setBezier] = useState(DEFAULT_BEZIER_PRESET.parameters);
 
   function handleBezierChange(bezierValue) {
     setBezier(bezierValue);

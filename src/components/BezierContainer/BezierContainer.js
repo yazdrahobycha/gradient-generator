@@ -1,34 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BezierCurveEditor } from "react-bezier-curve-editor";
 import "react-bezier-curve-editor/lib/index.css";
 import { BezierContext } from "../BezierProvider/BezierProvider";
-const BEZIER_PRESETS = [
-  { parameters: [0.3, 0.3, 0.7, 0.7], name: "Linear" },
-  { parameters: [0.5, 0, 0.5, 1], name: "Ease" },
-  { parameters: [0, 1, 1, 0], name: "Fun" },
-];
+import Button from "../Button/Button";
+import { DEFAULT_BEZIER_PRESET, BEZIER_PRESETS } from "../../constants";
 
 function BezierContainer() {
   const { bezier, handleBezierChange } = useContext(BezierContext);
+  const [activePreset, setActivePreset] = useState(DEFAULT_BEZIER_PRESET.name);
   return (
     <div>
       <BezierCurveEditor
         value={bezier}
         onChange={(bezierInputValue) => {
+          setActivePreset('idle')
           handleBezierChange(bezierInputValue);
         }}
       />
       <div>
         {BEZIER_PRESETS.map(({ name, parameters }) => {
           return (
-            <button
+            <Button
+              isActive={activePreset === name}
               key={name}
               onClick={() => {
+                setActivePreset(name);
                 handleBezierChange(parameters);
               }}
             >
               {name}
-            </button>
+            </Button>
+
+            // <button
+            //   key={name}
+            //   onClick={() => {
+            //     handleBezierChange(parameters);
+            //   }}
+            // >
+            //   {name}
+            // </button>
           );
         })}
       </div>
