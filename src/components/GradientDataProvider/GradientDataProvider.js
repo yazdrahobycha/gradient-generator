@@ -1,25 +1,17 @@
-import React, { useState } from "react";
-import GradientPreview from "../GradientPreview/GradientPreview";
-import Options from "../Options/Options";
+import React, { createContext, useState, useContext } from "react";
 import ColorsProvider from "../ColorsProvider/ColorsProvider";
 import ModeProvider from "../ModeProvider/ModeProvider";
 import AngleProvider from "../AngleProvider/AngleProvider";
 import PrecisionProvider from "../PrecisionProvider/PrecisionProvider";
 import BezierProvider from "../BezierProvider/BezierProvider";
-import Output from "../Output/Output";
 
-function App() {
-  const [gradientOutput, setGradientOutput] = useState("");
+function GradientDataProvider() {
   return (
     <ColorsProvider>
       <ModeProvider>
         <AngleProvider>
           <PrecisionProvider>
-            <BezierProvider>
-              <GradientPreview setGradientOutput={setGradientOutput} />
-              <Options />
-              <Output gradientOutput={gradientOutput} />
-            </BezierProvider>
+            <BezierProvider></BezierProvider>
           </PrecisionProvider>
         </AngleProvider>
       </ModeProvider>
@@ -27,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default GradientDataProvider;
