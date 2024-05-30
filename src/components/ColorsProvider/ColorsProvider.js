@@ -20,7 +20,7 @@ function ColorsProvider({ children }) {
   }
 
   function getActiveColors() {
-    console.log(colors);
+    console.log("getActiveColor is running");
     return colors
       .filter((colorEntry) => colorEntry.active)
       .map((colorEntry) => colorEntry.color);

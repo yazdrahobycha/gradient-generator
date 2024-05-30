@@ -6,6 +6,7 @@ import { ColorsContext } from "../ColorsProvider/ColorsProvider";
 
 function ColorPickersContainer() {
   const { colors, handleActiveColor } = useContext(ColorsContext);
+  console.log(colors + 'colors')
 
   return (
     <div className={styles.wrapper}>

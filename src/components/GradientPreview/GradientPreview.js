@@ -8,28 +8,17 @@ import { AngleContext } from "../AngleProvider/AngleProvider";
 import { PrecisionContext } from "../PrecisionProvider/PrecisionProvider";
 import { BezierContext } from "../BezierProvider/BezierProvider";
 
-function GradientPreview({ setGradientOutput }) {
-  const { getActiveColors } = useContext(ColorsContext);
-  const { mode } = useContext(ModeContext);
-  const { angle } = useContext(AngleContext);
-  const { precision } = useContext(PrecisionContext);
-  const { bezier } = useContext(BezierContext);
+import { useGradientData } from "../GradientDataProvider/GradientDataProvider";
 
-  const colorsEntries = getActiveColors();
-  const gradientStyles = createGradientBackground(
-    colorsEntries,
-    angle,
-    mode,
-    bezier,
-    precision
-  );
+function GradientPreview() {
+  const { getCssOutput, getOptionsfromUrl } = useGradientData();
+  console.log("GradientPreview rerendering!!");
 
-  const codeString = `.element {\n    background-image: ${gradientStyles.backgroundImage}\n}`;
   useEffect(() => {
-    setGradientOutput(codeString);
-  });
+    getOptionsfromUrl();
+  }, []);
 
-  return <div style={gradientStyles} className={styles.wrapper}></div>;
+  return <div style={getCssOutput()} className={styles.wrapper}></div>;
 }
 
 export default GradientPreview;

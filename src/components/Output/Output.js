@@ -5,22 +5,26 @@ import { useAutoToggle } from "../../hooks/useAutoToggle.hook";
 import Button from "../Button/Button";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useGradientData } from "../GradientDataProvider/GradientDataProvider";
 
-function Output({ gradientOutput }) {
-  const [textInClipboard, addToClipboard] = useClipboard();
+function Output() {
+  const { getCssOutput, getUrlOutput } = useGradientData();
   const [isCssJustCopied, setIsCssJustCopied] = useAutoToggle(false, 2000);
   const [isUrlJustCopied, setIsUrlJustCopied] = useAutoToggle(false, 2000);
 
+  const codeString = `.element {\n    background-image: ${
+    getCssOutput().backgroundImage
+  }\n}`;
   return (
     <div>
       <SyntaxHighlighter language="css" style={dracula}>
-        {gradientOutput}
+        {codeString}
       </SyntaxHighlighter>
       <Button
         disabled={isCssJustCopied}
         onClick={() => {
           setIsCssJustCopied();
-          addToClipboard(gradientOutput);
+          useClipboard(codeString);
         }}
       >
         {isCssJustCopied ? "Copied!" : "Copy CSS"}
@@ -29,10 +33,11 @@ function Output({ gradientOutput }) {
         disabled={isUrlJustCopied}
         onClick={() => {
           setIsUrlJustCopied();
-          addToClipboard(gradientOutput);
+          console.log();
+          useClipboard(getUrlOutput());
         }}
       >
-        {isCssJustCopied ? "Copied!" : "Copy URL"}
+        {isUrlJustCopied ? "Copied!" : "Copy URL"}
       </Button>
     </div>
   );

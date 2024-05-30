@@ -6,24 +6,16 @@ import ModeProvider from "../ModeProvider/ModeProvider";
 import AngleProvider from "../AngleProvider/AngleProvider";
 import PrecisionProvider from "../PrecisionProvider/PrecisionProvider";
 import BezierProvider from "../BezierProvider/BezierProvider";
+import GradientDataProvider from "../GradientDataProvider/GradientDataProvider";
 import Output from "../Output/Output";
 
 function App() {
-  const [gradientOutput, setGradientOutput] = useState("");
   return (
-    <ColorsProvider>
-      <ModeProvider>
-        <AngleProvider>
-          <PrecisionProvider>
-            <BezierProvider>
-              <GradientPreview setGradientOutput={setGradientOutput} />
-              <Options />
-              <Output gradientOutput={gradientOutput} />
-            </BezierProvider>
-          </PrecisionProvider>
-        </AngleProvider>
-      </ModeProvider>
-    </ColorsProvider>
+    <GradientDataProvider>
+      <GradientPreview />
+      <Options />
+      <Output />
+    </GradientDataProvider>
   );
 }
 
