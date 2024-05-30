@@ -17,7 +17,7 @@ function ModesContainer() {
               id={modeName}
               value={modeName}
               checked={mode === modeName}
-              onChange={handleModeChange}
+              onChange={(e) => handleModeChange(e.target.value)}
             />
             <label htmlFor={modeName}>{modeName.toUpperCase()}</label>
           </div>

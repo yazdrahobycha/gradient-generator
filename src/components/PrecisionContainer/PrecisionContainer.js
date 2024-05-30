@@ -15,7 +15,7 @@ function PrecisionContainer() {
         max={DEFAULT_PRECISION_RANGE[1]}
         step="1"
         value={precision}
-        onChange={handlePrecisionChange}
+        onChange={(e) => handlePrecisionChange(e.target.value)}
       />
       <label htmlFor="precisionSlider">{precision}</label>
     </div>

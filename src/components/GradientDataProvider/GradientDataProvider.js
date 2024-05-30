@@ -33,15 +33,35 @@ function GradientDataProvider({ children }) {
 }
 
 export const useGradientData = () => {
-  const { angle, setAngle } = useContext(AngleContext);
-  const { mode, setMode } = useContext(ModeContext);
-  const { precision, setPrecision } = useContext(PrecisionContext);
-  const { colors, setColors, getActiveColors } = useContext(ColorsContext);
-  const { bezier, setBezier } = useContext(BezierContext);
+  const { angle, handleAngleChange } = useContext(AngleContext);
+  const { mode, handleModeChange } = useContext(ModeContext);
+  const { precision, handlePrecisionChange } = useContext(PrecisionContext);
+  const { bezier, handleBezierChange } = useContext(BezierContext);
+  const { colors, getActiveColors, updateColors } = useContext(ColorsContext);
 
   function getOptionsfromUrl() {
     const params = new URLSearchParams(window.location.search);
-    console.log(params);
+    params.forEach((value, key) => {
+      switch (key) {
+        case "colors":
+          const decodedColors = JSON.parse(decodeURIComponent(value));
+          updateColors(decodedColors);
+          break;
+        case "mode":
+          handleModeChange(value);
+          break;
+        case "angle":
+          handleAngleChange(value);
+          break;
+        case "precision":
+          handlePrecisionChange(value);
+          break;
+        case "bezier":
+          const bezierArray = value.split(",").map((number) => Number(number));
+          handleBezierChange(bezierArray);
+          break;
+      }
+    });
   }
 
   function getUrlOutput() {
@@ -54,7 +74,7 @@ export const useGradientData = () => {
     // decoded colors
     // const decodedColors = JSON.parse(decodeURIComponent(encodedColors));
     // console.log(decodedColors[0].color);
-    const filterParams = `?colors=${encodedColors}&mode=${mode}&angle=${angle}&precision=${precision}&bezier=${bezier}`;
+    const filterParams = `?mode=${mode}&angle=${angle}&precision=${precision}&bezier=${bezier}&colors=${encodedColors}`;
     return baseUrl + filterParams;
   }
 

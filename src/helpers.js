@@ -1,4 +1,4 @@
-import chroma, { average } from "chroma-js";
+import chroma from "chroma-js";
 import BezierEasing from "bezier-easing";
 
 export function createGradientBackground(

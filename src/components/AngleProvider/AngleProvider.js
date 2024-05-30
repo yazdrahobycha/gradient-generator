@@ -6,13 +6,18 @@ export const AngleContext = createContext();
 function AngleProvider({ children }) {
   const [angle, setAngle] = useState(DEFAULT_ANGLE);
 
-  function handleAngleChange(e) {
-    setAngle(e.target.value);
+  function handleAngleChange(angleValue) {
+    angleValue = Number(angleValue);
+    if (angleValue < 0 || angleValue > 365 || isNaN(angleValue)) {
+      return
+    }
+    setAngle(angleValue);
   }
 
   const value = useMemo(() => {
     const obj = {
       angle,
+      setAngle,
       handleAngleChange,
     };
     return obj;

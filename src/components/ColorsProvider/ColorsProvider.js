@@ -1,5 +1,6 @@
 import React, { createContext, useMemo, useState } from "react";
 import { INITIAL_COLORS_STATES } from "../../constants";
+import chroma from "chroma-js";
 export const ColorsContext = createContext();
 
 function ColorsProvider({ children }) {
@@ -17,6 +18,25 @@ function ColorsProvider({ children }) {
       newArray[i].color = e.target.value;
       return newArray;
     });
+  }
+
+  function updateColors(colorsArr) {
+    // validate array of colors passed as parameter url
+    const validityCheck = colorsArr.some((colorEntry) => {
+      return (
+        !chroma.valid(colorEntry.color) ||
+        typeof colorEntry.active !== "boolean"
+      );
+    });
+    if (validityCheck) {
+      return;
+    }
+
+    const newColors = colorsArr.map((colorsEntry, i) => {
+      colorsEntry.id = colors[i].id;
+      return colorsEntry;
+    });
+    setColors(newColors);
   }
 
   function getActiveColors() {
@@ -50,6 +70,7 @@ function ColorsProvider({ children }) {
       handleColorChange,
       handleActiveColor,
       getActiveColors,
+      updateColors,
     };
     return obj;
   }, [colors]);

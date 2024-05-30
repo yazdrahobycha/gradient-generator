@@ -6,12 +6,20 @@ function BezierProvider({ children }) {
   const [bezier, setBezier] = useState(DEFAULT_BEZIER_PRESET.parameters);
 
   function handleBezierChange(bezierValue) {
+    if (
+      bezierValue.some((num) => {
+        return num < -0.26 || num > 1.26 || isNaN(num);
+      })
+    ) {
+      return;
+    }
     setBezier(bezierValue);
   }
 
   const value = useMemo(() => {
     const obj = {
       bezier,
+      setBezier,
       handleBezierChange,
     };
     return obj;

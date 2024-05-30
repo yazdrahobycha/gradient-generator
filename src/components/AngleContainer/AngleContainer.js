@@ -15,7 +15,7 @@ function AngleContainer() {
         max="355"
         step="5"
         value={angle}
-        onChange={handleAngleChange}
+        onChange={(e) => handleAngleChange(e.target.value)}
       />
       <label htmlFor="angleSlider">Angle: {angle}deg</label>
     </div>
