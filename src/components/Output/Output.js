@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import { useClipboard } from "../../hooks/useClipboard.hook";
 import { useAutoToggle } from "../../hooks/useAutoToggle.hook";
 import Button from "../Button/Button";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useGradientData } from "../GradientDataProvider/GradientDataProvider";
+import { GradientDataContext } from "../GradientDataProvider/GradientDataProvider";
 
 function Output() {
-  const { getCssOutput, getUrlOutput } = useGradientData();
+  const { getCssOutput, getUrlOutput } = useContext(GradientDataContext);
   const [isCssJustCopied, setIsCssJustCopied] = useAutoToggle(false, 2000);
   const [isUrlJustCopied, setIsUrlJustCopied] = useAutoToggle(false, 2000);
 
@@ -33,7 +33,6 @@ function Output() {
         disabled={isUrlJustCopied}
         onClick={() => {
           setIsUrlJustCopied();
-          console.log();
           useClipboard(getUrlOutput());
         }}
       >

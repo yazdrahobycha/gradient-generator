@@ -1,10 +1,11 @@
 import React, { memo, useContext } from "react";
-import { ColorsContext } from "../ColorsProvider/ColorsProvider";
+import { GradientDataContext } from "../GradientDataProvider/GradientDataProvider";
 import style from "../ColorPickersContainer/color-picker-container.module.css";
 import { Plus, Trash } from "react-feather";
 
 function ColorPicker({ passedColor, indexInColorsArray, passedIsActive }) {
-  const { handleColorChange, handleActiveColor } = useContext(ColorsContext);
+  const { handleColorChange, handleActiveColor } =
+    useContext(GradientDataContext);
 
   const Icon = passedIsActive ? Trash : Plus;
 

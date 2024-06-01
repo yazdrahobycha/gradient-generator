@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { BezierCurveEditor } from "react-bezier-curve-editor";
 import "react-bezier-curve-editor/lib/index.css";
-import { BezierContext } from "../BezierProvider/BezierProvider";
+import { GradientDataContext } from "../GradientDataProvider/GradientDataProvider";
 import Button from "../Button/Button";
 import { DEFAULT_BEZIER_PRESET, BEZIER_PRESETS } from "../../constants";
 
 function BezierContainer() {
-  const { bezier, handleBezierChange } = useContext(BezierContext);
+  const { bezier, handleBezierChange } = useContext(GradientDataContext);
   const [activePreset, setActivePreset] = useState(DEFAULT_BEZIER_PRESET.name);
   return (
     <div>

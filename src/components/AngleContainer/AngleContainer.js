@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { AngleContext } from "../AngleProvider/AngleProvider";
+import { GradientDataContext } from "../GradientDataProvider/GradientDataProvider";
 
 function AngleContainer() {
-  const { angle, handleAngleChange } = useContext(AngleContext);
+  const { angle, handleAngleChange } = useContext(GradientDataContext);
 
   return (
     <div>

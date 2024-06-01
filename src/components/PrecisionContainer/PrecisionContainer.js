@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { PrecisionContext } from "../PrecisionProvider/PrecisionProvider";
+import { GradientDataContext } from "../GradientDataProvider/GradientDataProvider";
 import { DEFAULT_PRECISION_RANGE } from "../../constants";
 
 function PrecisionContainer() {
-  const { precision, handlePrecisionChange } = useContext(PrecisionContext);
+  const { precision, handlePrecisionChange } = useContext(GradientDataContext);
   return (
     <div>
       <input

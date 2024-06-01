@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import styles from "./modes-container.module.css";
-import { ModeContext } from "../ModeProvider/ModeProvider";
+import { GradientDataContext } from "../GradientDataProvider/GradientDataProvider";
 import { SUPPORTED_COLOR_MODES } from "../../constants";
 
 function ModesContainer() {
-  const { mode, handleModeChange } = useContext(ModeContext);
+  const { mode, handleModeChange } = useContext(GradientDataContext);
 
   return (
     <div className={styles.wrapper}>

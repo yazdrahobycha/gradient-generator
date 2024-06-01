@@ -1,12 +1,10 @@
 import React, { useCallback, useContext } from "react";
 import ColorPicker from "../ColorPicker/ColorPicker";
-import { Plus, Trash } from "react-feather";
 import styles from "./color-picker-container.module.css";
-import { ColorsContext } from "../ColorsProvider/ColorsProvider";
+import { GradientDataContext } from "../GradientDataProvider/GradientDataProvider";
 
 function ColorPickersContainer() {
-  const { colors, handleActiveColor } = useContext(ColorsContext);
-  console.log(colors + 'colors')
+  const { colors } = useContext(GradientDataContext);
 
   return (
     <div className={styles.wrapper}>
