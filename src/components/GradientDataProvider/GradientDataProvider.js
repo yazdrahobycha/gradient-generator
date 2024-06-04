@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
-import { createGradientBackground } from "../../helpers";
+import { createGradientBackground, getRandomCubicBezier } from "../../helpers";
+import chroma from "chroma-js";
 import {
   DEFAULT_PRECISION,
   INITIAL_COLORS_STATES,
@@ -103,7 +104,6 @@ function GradientDataProvider({ children }) {
   // function that return filtered array of active actual colors
   // (not colors entries)
   function getActiveColors() {
-    console.log("getActiveColor is running");
     return colors
       .filter((colorEntry) => colorEntry.active)
       .map((colorEntry) => colorEntry.color);
@@ -142,7 +142,6 @@ function GradientDataProvider({ children }) {
 
   function getCssOutput() {
     const colorsEntries = getActiveColors();
-    console.log("Generating new object with output!!");
     const gradientStyles = createGradientBackground(
       colorsEntries,
       angle,
@@ -151,6 +150,40 @@ function GradientDataProvider({ children }) {
       precision
     );
     return gradientStyles;
+  }
+
+  function randomizeOptions() {
+    const newColors = colors.map((colorEntry) => {
+      return {
+        color: chroma.random().hex(),
+        active: Math.random() >= 0.5,
+        id: colorEntry.id,
+      };
+    });
+    let activeColorsCount = newColors.filter(
+      (colorsEntry) => colorsEntry.active
+    ).length;
+    while (activeColorsCount < 2) {
+      newColors.forEach(
+        (colorEntry) => (colorEntry.active = Math.random() <= 0.5)
+      );
+      activeColorsCount = newColors.filter(
+        (colorsEntry) => colorsEntry.active
+      ).length;
+    }
+    const newAngle = Math.round(Math.random() * 72) * 5;
+    const newPrecision = Math.round(Math.floor(Math.random() * 20)) + 1;
+    const newMode =
+      SUPPORTED_COLOR_MODES[
+        Math.floor(Math.random() * SUPPORTED_COLOR_MODES.length)
+      ];
+    const newBezier = getRandomCubicBezier();
+
+    setColors(newColors);
+    setAngle(newAngle);
+    setMode(newMode);
+    setPrecision(newPrecision);
+    setBezier(newBezier);
   }
 
   function getOptionsfromUrl() {
@@ -198,6 +231,7 @@ function GradientDataProvider({ children }) {
     getActiveColors,
     getUrlOutput,
     getCssOutput,
+    randomizeOptions,
   };
 
   return (

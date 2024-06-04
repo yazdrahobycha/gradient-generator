@@ -17,6 +17,11 @@ export function createGradientBackground(
   const hslValuesForStyles = withInBetweenColors
     .map((hexColor, i) => {
       const hslColor = chroma(hexColor).hsl();
+      // fix for the chroma bug (if the color all black)
+      // the first value of hsl appears to be NaN for some reason
+      if (isNaN(hslColor[0])) {
+        hslColor[0] = 0;
+      }
       const position = easing(i / (precisionWithbaseColors - 1)) * 100;
       return `      hsl(${Math.round(hslColor[0])}deg ${Math.round(
         hslColor[1] * 100
@@ -28,4 +33,15 @@ export function createGradientBackground(
     backgroundImage: `linear-gradient(${angle}deg,\n ${hslValuesForStyles})`,
   };
   return inlineStyleObj;
+}
+
+export function getRandomCubicBezier() {
+  // Generate random control points, each rounded to three decimal places
+  const p1x = parseFloat(Math.random().toFixed(3));
+  const p1y = parseFloat(Math.random().toFixed(3));
+  const p2x = parseFloat(Math.random().toFixed(3));
+  const p2y = parseFloat(Math.random().toFixed(3));
+
+  // Return the control points as an array
+  return [p1x, p1y, p2x, p2y];
 }

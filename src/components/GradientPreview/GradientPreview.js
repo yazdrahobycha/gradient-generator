@@ -6,7 +6,6 @@ import { GradientDataContext } from "../GradientDataProvider/GradientDataProvide
 
 function GradientPreview() {
   const { getCssOutput } = useContext(GradientDataContext);
-  console.log("GradientPreview rerendering!!");
 
   return <div style={getCssOutput()} className={styles.wrapper}></div>;
 }

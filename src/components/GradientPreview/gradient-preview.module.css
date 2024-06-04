@@ -7,3 +7,8 @@
 .output {
     background-color:bisque;
 }
+
+.title {
+    mix-blend-mode: color-burn;
+    font-size: 3em;
+}

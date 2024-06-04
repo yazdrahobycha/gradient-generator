@@ -3,17 +3,15 @@ import { BezierCurveEditor } from "react-bezier-curve-editor";
 import "react-bezier-curve-editor/lib/index.css";
 import { GradientDataContext } from "../GradientDataProvider/GradientDataProvider";
 import Button from "../Button/Button";
-import { DEFAULT_BEZIER_PRESET, BEZIER_PRESETS } from "../../constants";
+import { BEZIER_PRESETS } from "../../constants";
 
 function BezierContainer() {
   const { bezier, handleBezierChange } = useContext(GradientDataContext);
-  const [activePreset, setActivePreset] = useState(DEFAULT_BEZIER_PRESET.name);
   return (
     <div>
       <BezierCurveEditor
         value={bezier}
         onChange={(bezierInputValue) => {
-          setActivePreset("idle");
           handleBezierChange(bezierInputValue);
         }}
       />
@@ -21,10 +19,11 @@ function BezierContainer() {
         {BEZIER_PRESETS.map(({ name, parameters }) => {
           return (
             <Button
-              isActive={activePreset === name}
+              isActive={bezier.every(
+                (presetPoint, i) => presetPoint === parameters[i]
+              )}
               key={name}
               onClick={() => {
-                setActivePreset(name);
                 handleBezierChange(parameters);
               }}
             >
